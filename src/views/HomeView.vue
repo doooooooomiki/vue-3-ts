@@ -48,9 +48,22 @@ const handleClick = (term: OrderTerm) => {
 
 <template>
   <main>
-    <button @click="handleClick('title')">order by title</button>
-    <button @click="handleClick('salary')">order by salary</button>
-    <button @click="handleClick('location')">order by location</button>
+    <section>
+      <div class="order">
+        <button @click="handleClick('title')">order by title</button>
+        <button @click="handleClick('salary')">order by salary</button>
+        <button @click="handleClick('location')">order by location</button>
+      </div>
+    </section>
     <JobList :jobs="jobs" :order="order" />
   </main>
 </template>
+
+<style scoped>
+  section {
+    text-align: center;
+  }
+  section .order {
+    margin-top: 20px;
+  }
+</style>
