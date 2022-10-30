@@ -1,20 +1,29 @@
 <script setup lang="ts">
 
 import type Job from '@/types/Job'
+import type OrderTerm from '@/types/OrderTerm'
 
 defineProps<{
-  jobs?: Job[]
+  jobs?: Job[],
+  order?: OrderTerm,
 }>()
 
 </script>
 
 <template>
   <div class="job-list">
+    <p>
+      Ordered by {{order}}
+    </p>
     <ul>
       <li v-for="job in jobs" :key="job.id">
-        <h2>{{job.title}} in {{job.location}}</h2>
+        <h2>
+          {{job.title}} in {{job.location}}
+        </h2>
         <div class="job-salary">
-          <p>{{job.salary}}$</p>
+          <p>
+            {{job.salary}}$
+          </p>
         </div>
         <div class="job-description">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam, soluta obcaecati praesentium molestiae atque officiis quasi esse voluptate rem iure pariatur natus numquam mollitia voluptatibus, expedita ex quisquam nostrum laboriosam.
