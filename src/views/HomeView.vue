@@ -1,7 +1,9 @@
 <script setup lang="ts">
 
-import { reactive, ref } from 'vue';
+import JobList from '@/components/JobList.vue'
+import type OrderTerm from '@/types/OrderTerm'
 import type Job from '@/types/Job'
+import { ref } from 'vue'
 
 const jobs = ref<Job[]>([
   {
@@ -36,10 +38,19 @@ const jobs = ref<Job[]>([
   }
 ])
 
+const order = ref<OrderTerm>('title')
+
+const handleClick = (term: OrderTerm) => {
+  order.value = term
+}
+
 </script>
 
 <template>
   <main>
-
+    <button @click="handleClick('title')">order by title</button>
+    <button @click="handleClick('salary')">order by salary</button>
+    <button @click="handleClick('location')">order by location</button>
+    <JobList :jobs="jobs" :order="order" />
   </main>
 </template>
