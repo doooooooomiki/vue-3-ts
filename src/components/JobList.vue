@@ -2,11 +2,18 @@
 
 import type Job from '@/types/Job'
 import type OrderTerm from '@/types/OrderTerm'
+import { computed } from 'vue';
 
-defineProps<{
+const props = defineProps<{
   jobs?: Job[],
   order?: OrderTerm,
 }>()
+
+const orderedJobs = computed(() => {
+  return props.jobs?.sort((a: Job, b: Job) => {
+    return a[props.order as OrderTerm] > b[props.order as OrderTerm] ? 1 : -1
+  })
+})
 
 </script>
 
@@ -16,7 +23,7 @@ defineProps<{
       Ordered by {{order}}
     </p>
     <ul>
-      <li v-for="job in jobs" :key="job.id">
+      <li v-for="job in orderedJobs" :key="job.id">
         <h2>
           {{job.title}} in {{job.location}}
         </h2>
